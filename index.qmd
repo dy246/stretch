@@ -1,0 +1,118 @@
+---
+title: "Pakistan's Growth Over Time"
+author: "Sanaa Kashif"
+format: html
+code-fold: true
+embed-resources: true 
+execute:
+  warning: false
+  message: false
+---
+
+## Quarto
+```{r}
+knitr::opts_knit$set(root.dir = "/Users/sanaakashif/Desktop/stretch")
+```
+
+## Running Code
+
+This assignment uses data from : <https://databank.worldbank.org/reports.aspx?source=2&country=PAK#>. Its a world Bank data set on Pakistan. The assignment will look at population growth and population poverty. There will be four graphs made which look at population growth over time, rate of population growth, poverty rates and GDP growth. The very first section of code will load the data and give me a brief understanding of the data structure. This block includes code to hide the output for a neater effect.
+
+```{r, output = FALSE}
+
+#hiding code for the set up codes for a neater effect 
+options(repos = c(CRAN = "https://cloud.r-project.org"))
+
+# Load libraries
+# Install required packages 
+install.packages("tidyverse")
+install.packages("scales")
+
+# Then load 
+library(tidyverse)
+library(scales)
+
+setwd("/Users/sanaakashif/Desktop/stretch")
+dataset <- read_csv("dataset.csv")
+
+```
+
+Pakistan, as one of the world's most populous countries, faces critical policy challenges related to population growth, poverty reduction, and economic development. Understanding these trends is essential for effective policy planning and resource allocation.To do this, I firstly started out by shaping the code 'long' for easier analysis. This code was also hidden for a neater affect.
+
+```{r, output = FALSE}
+setwd("/Users/sanaakashif/Desktop/stretch")
+dataset <- read_csv("dataset.csv")
+data <- read.csv("dataset.csv")
+unique(dataset$`Series Name`)
+
+data_long <- dataset |>
+  pivot_longer(
+    cols = -c(`Country Name`, `Country Code`, `Series Name`, `Series Code`),
+    names_to = "year",
+    values_to = "value"
+  ) |>
+  mutate(
+    year = as.numeric(str_extract(year, "\\d{4}")),
+    value = as.numeric(value)
+  ) |>
+  filter(!is.na(value))
+```
+
+The following code will create a graph which will look at population growth in Pakistan over time. Pakistan's total population has grown dramatically since 1990, with significant policy implications for infrastructure, education, and healthcare planning. The variable used here 'SP.POP.TOTL' is the total population per year.
+
+```{r}
+setwd("/Users/sanaakashif/Desktop/stretch")
+dataset <- read_csv("dataset.csv")
+data <- read.csv("dataset.csv")
+unique(dataset$`Series Name`)
+
+# Visualization 1: Pakistan's Population Growth Over Time
+
+# Filter for population data
+population_data <- data_long |>
+  filter(`Series Code` == "SP.POP.TOTL")
+
+# Create the plot
+ggplot(population_data, aes(x = year, y = value)) +
+  geom_line(color = "darkblue") +
+  geom_point(color = "red") +
+  scale_y_continuous(
+  ) +
+  labs(
+    title = "Pakistan's Population Has Doubled Since 1990",
+    subtitle = "Total population increased from 116 million to 251 million (1990-2024)",
+    x = "Year",
+    y = "Total Population",
+    caption = "Source: World Bank Open Data"
+  )
+
+```
+```{r}
+setwd("/Users/sanaakashif/Desktop/stretch")
+dataset <- read_csv("dataset.csv")
+data <- read.csv("dataset.csv")
+unique(dataset$`Series Name`)
+
+# Visualization 2: Annual Population Growth Rate Trends
+
+# Filter for population growth rate data
+growth_data <- data_long |>
+  filter(`Series Code` == "SP.POP.GROW")
+
+# Create the plot
+ggplot(growth_data, aes(x = year, y = value, fill = "Growth Rate")) +
+  geom_area() +
+  geom_line(aes(color = "Trend")) +
+  scale_fill_manual(values = "lightblue") +
+  scale_color_manual(values = "darkblue") +
+  labs(
+    title = "Pakistan's Population Growth Rate Shows Gradual Decline",
+    subtitle = "Annual growth rate decreased from 3.3% to 1.5% (1990-2024)",
+    x = "Year",
+    y = "Annual Population Growth Rate (%)",
+    fill = "",
+    color = "",
+    caption = "Source: World Bank Open Data"
+  )
+```
+
