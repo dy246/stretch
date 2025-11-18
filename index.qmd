@@ -1,6 +1,6 @@
 ---
-title: "Pakistan's Growth Over Time"
-author: "Sanaa Kashif"
+title: "Pakistan's Growth Over Time [Stretch]"
+author: "Sanaa Kashif & Daija Yisrael"
 format: html
 code-fold: true
 embed-resources: true 
@@ -121,6 +121,7 @@ ggplot(growth_data, aes(x = year, y = value, fill = "Growth Rate")) +
     caption = "Source: World Bank Open Data"
   )
 ```
+
 ## Visaulization 3
 
 ```{r}
@@ -164,4 +165,3 @@ caption = "Source: World Bank Open Data"
 )
 
 ```
-
