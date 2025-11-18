@@ -1,4 +1,6 @@
 ---
+title: "Pakistan's Growth Over Time [Stretch]"
+author: "Sanaa Kashif & Daija Yisrael"
 title: "Pakistan's Growth Over Time"
 author: "Sanaa Kashif"
 format: html
@@ -40,7 +42,7 @@ dataset <- read_csv("dataset.csv")
 Pakistan, as one of the world's most populous countries, faces critical policy challenges related to population growth, poverty reduction, and economic development. Understanding these trends is essential for effective policy planning and resource allocation.To do this, I firstly started out by shaping the code 'long' for easier analysis. This code was also hidden for a neater affect.
 
 ```{r, output = FALSE}
-setwd("/Users/sanaakashif/Desktop/stretch")
+#setwd("/Users/sanaakashif/Desktop/stretch")
 dataset <- read_csv("dataset.csv")
 data <- read.csv("dataset.csv")
 unique(dataset$`Series Name`)
@@ -65,8 +67,11 @@ setwd("/Users/sanaakashif/Desktop/stretch")
 dataset <- read_csv("dataset.csv")
 data <- read.csv("dataset.csv")
 unique(dataset$`Series Name`)
+```
+## Visualization 1: Pakistan's Population Growth Over Time
 
-# Visualization 1: Pakistan's Population Growth Over Time
+```{r}
+
 
 # Filter for population data
 population_data <- data_long |>
@@ -92,8 +97,11 @@ setwd("/Users/sanaakashif/Desktop/stretch")
 dataset <- read_csv("dataset.csv")
 data <- read.csv("dataset.csv")
 unique(dataset$`Series Name`)
+```
+## Visualization 2: Annual Population Growth Rate Trends
 
-# Visualization 2: Annual Population Growth Rate Trends
+```{r}
+
 
 # Filter for population growth rate data
 growth_data <- data_long |>
@@ -116,3 +124,46 @@ ggplot(growth_data, aes(x = year, y = value, fill = "Growth Rate")) +
   )
 ```
 
+## Visaulization 3
+
+```{r}
+library(tidyverse)
+
+poverty_data <- data_long |>
+filter(`Series Code` %in% c("SI.POV.NAHC", "SI.POV.DDAY")) |>
+mutate(measure = ifelse("Series Code" == "SI.POV.NAHC",
+"National Poverty",
+"Extreme Poverty (<$3.00/day)"))
+
+# create the plot 
+ggplot(poverty_data, aes(x = factor(year), y = value, fill = measure)) +
+geom_col(position = "dodge", width = 0.7) +
+labs(
+title = "Pakistan's Poverty Rates Show Significant Reduction",
+subtitle = "Both national and extreme poverty have declined substantially",
+x = "Year",
+y = "Poverty Rate (%)",
+fill = "Poverty Measure",
+caption = "Source: World Bank Open Data"
+) +
+
+theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+## Visualization 4
+
+```{r}
+gdp_data <- data_long |>
+filter(`Series Code` == "NY.GDP.MKTP.CD") |>
+filter(year %in% c(1990, 2015, 2018))
+
+ggplot(gdp_data, aes(x = factor(year), y = value)) +
+geom_col(fill = "darkgreen") +
+labs(
+title = "Pakistan's GDP Growth Across Key Years",
+subtitle = "GDP increased from $40B to $313B between 1990 and 2018",
+x = "Year",
+y = "GDP (Current US Dollars)",
+caption = "Source: World Bank Open Data"
+)
+
+```
