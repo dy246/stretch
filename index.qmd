@@ -1,6 +1,8 @@
 ---
 title: "Pakistan's Growth Over Time [Stretch]"
 author: "Sanaa Kashif & Daija Yisrael"
+title: "Pakistan's Growth Over Time"
+author: "Sanaa Kashif"
 format: html
 code-fold: true
 embed-resources: true 
