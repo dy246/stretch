@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1a2c620f4780902ed024b91ba85e8fa74058128e
 .Rproj.user
 .Rhistory
 .RData
@@ -6,7 +9,10 @@
 .csv
 .md
 
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 1a2c620f4780902ed024b91ba85e8fa74058128e
 # History files
 .Rhistory
 .Rapp.history
@@ -55,8 +61,13 @@ docs/
 po/*~
 
 # RStudio Connect folder
+<<<<<<< HEAD
 rsconnect/
 >>>>>>> e976fb7575f76efdd21bbf3f3d07a67b21f4c9be
 
 .html
 
+=======
+rsconnect/*.csv
+.DS_Store
+>>>>>>> 1a2c620f4780902ed024b91ba85e8fa74058128e
