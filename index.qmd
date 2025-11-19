@@ -156,6 +156,7 @@ filter(year %in% c(1990, 2015, 2018))
 
 ggplot(gdp_data, aes(x = factor(year), y = value)) +
 geom_col(fill = "darkgreen") +
+  geom_text(aes(label = scales::dollar(value)), vjust = -.25) + 
 labs(
 title = "Pakistan's GDP Growth Across Key Years",
 subtitle = "GDP increased from $40B to $313B between 1990 and 2018",
