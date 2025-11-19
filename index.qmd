@@ -11,7 +11,7 @@ execute:
 
 ## Quarto
 ```{r}
-knitr::opts_knit$set(root.dir = "/Users/sanaakashif/Desktop/stretch")
+knitr::opts_knit$set(root.dir = "/Users/daija/Desktop/Academics/MIDP_24_26/MIDP_yr2/Data Science/a4stretch1/stretch")
 ```
 
 ## Running Code
@@ -32,7 +32,7 @@ install.packages("scales")
 library(tidyverse)
 library(scales)
 
-setwd("/Users/sanaakashif/Desktop/stretch")
+setwd("/Users/daija/Desktop/Academics/MIDP_24_26/MIDP_yr2/Data Science/a4stretch1/stretch")
 dataset <- read_csv("dataset.csv")
 
 ```
@@ -40,7 +40,7 @@ dataset <- read_csv("dataset.csv")
 Pakistan, as one of the world's most populous countries, faces critical policy challenges related to population growth, poverty reduction, and economic development. Understanding these trends is essential for effective policy planning and resource allocation.To do this, I firstly started out by shaping the code 'long' for easier analysis. This code was also hidden for a neater affect.
 
 ```{r, output = FALSE}
-#setwd("/Users/sanaakashif/Desktop/stretch")
+#setwd("/Users/daija/Desktop/Academics/MIDP_24_26/MIDP_yr2/Data Science/a4stretch1/stretch")
 dataset <- read_csv("dataset.csv")
 data <- read.csv("dataset.csv")
 unique(dataset$`Series Name`)
@@ -61,7 +61,7 @@ data_long <- dataset |>
 The following code will create a graph which will look at population growth in Pakistan over time. Pakistan's total population has grown dramatically since 1990, with significant policy implications for infrastructure, education, and healthcare planning. The variable used here 'SP.POP.TOTL' is the total population per year.
 
 ```{r}
-setwd("/Users/sanaakashif/Desktop/stretch")
+setwd("/Users/daija/Desktop/Academics/MIDP_24_26/MIDP_yr2/Data Science/a4stretch1/stretch")
 dataset <- read_csv("dataset.csv")
 data <- read.csv("dataset.csv")
 unique(dataset$`Series Name`)
@@ -91,7 +91,7 @@ ggplot(population_data, aes(x = year, y = value)) +
 
 ```
 ```{r}
-setwd("/Users/sanaakashif/Desktop/stretch")
+setwd("/Users/daija/Desktop/Academics/MIDP_24_26/MIDP_yr2/Data Science/a4stretch1/stretch")
 dataset <- read_csv("dataset.csv")
 data <- read.csv("dataset.csv")
 unique(dataset$`Series Name`)
